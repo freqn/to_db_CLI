@@ -1,4 +1,13 @@
 require 'Task'
+require 'pg'
+
+DB = PG.connect(:dbname => "to_do_test")
+
+RSpec.configure do |config|
+  config.after(:each) do 
+    DB.exec("DELETE FROM tasks *;")
+  end
+end
 
 describe Task do 
   it 'is initialized with a name' do 
@@ -13,6 +22,18 @@ describe Task do
 
   it 'starts with no tasks in the database' do
     Task.all.should eq []
+  end
+
+  it 'lets you save tasks to the database' do 
+    task = Task.new("learn SQL")
+    task.save
+    Task.all.should eq [task]
+  end
+
+  it 'is the same task if it has the same name' do 
+    task1 = Task.new("learn SQL")
+    task2  = Task.new("learn SQL")
+    task1.should eq task2
   end
 
 
