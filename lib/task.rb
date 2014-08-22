@@ -16,7 +16,7 @@ class Task
   def self.all 
     results = DB.exec("SELECT * FROM tasks;")
     tasks = []
-    results.each do | result |
+    results.each do |result|
       name = result['name']
       tasks << Task.new(name)
     end
