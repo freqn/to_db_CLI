@@ -1,4 +1,4 @@
-require 'Task'
+require 'task'
 require 'pg'
 
 DB = PG.connect(:dbname => "to_do_test")
