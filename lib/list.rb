@@ -7,6 +7,10 @@ class List
     @name
   end
 
+  def id
+    @id
+  end
+
   def ==(another_list)
     self.name == another_list.name
   end
@@ -22,7 +26,8 @@ class List
   end
 
   def save
-    DB.exec("INSERT INTO lists (name) VALUES ('#{@name}');")
+    results = DB.exec("INSERT INTO lists (name) VALUES ('#{@name}') RETURNING id;")
+    @id = results.first['id'].to_i
   end
 
 

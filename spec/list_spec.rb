@@ -35,5 +35,11 @@ describe List do
     list.save
     List.all.should eq [list]
   end
-  
+
+  it 'sets its id when you save it' do 
+    list = List.new('My stuff')
+    list.save
+    list.id.should be_an_instance_of Fixnum
+  end
+
 end
