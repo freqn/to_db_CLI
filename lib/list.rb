@@ -17,18 +17,17 @@ class List
 
   def self.all
     results = DB.exec("SELECT * FROM lists;")
-    lists = []
+    @lists = []
     results.each do |result|
       name = result['name']
-      lists << List.new(name)
+      @lists << List.new(name)
     end
-    lists
+    @lists
   end
 
   def save
     results = DB.exec("INSERT INTO lists (name) VALUES ('#{@name}') RETURNING id;")
     @id = results.first['id'].to_i
   end
-
-
 end
+

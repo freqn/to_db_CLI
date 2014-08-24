@@ -32,5 +32,4 @@ describe List do
     list.save
     list.id.should be_an_instance_of Fixnum
   end
-
 end

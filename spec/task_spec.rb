@@ -32,6 +32,4 @@ describe Task do
     task2  = Task.new("learn SQL", 1)
     task1.should eq task2
   end
-
-
 end
